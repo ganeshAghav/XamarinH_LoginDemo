@@ -1,0 +1,58 @@
+﻿@inherits PortableRazor.ViewBase
+@using PortableRazor
+@model ModelViewUI.Models.LoginModel
+
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>َAnimated Login Form</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="jquery-1.10.2.min.js"></script>
+    <script src="jquery.client.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        });
+
+        function UserLogin() {
+            var password = document.getElementById('txtPassword').value;
+            var user = document.getElementById('txtuser').value;
+
+            if (user == "") {
+                alert("Please enter user name.");
+            }
+            else if (user.length > 10 || user.length < 9) {
+                alert("User name must be 10 digit.");
+            }
+            else if (password == "") {
+                alert("Please enter password.");
+            }
+            else if (password.length > 5 || password.length < 4) {
+                alert("Password must be 5 digit.");
+            }
+            else {
+                location.href = '@Url.Action("btnLogin_Click", "LoginController")?txtUserName=' + user + '&txtPassword=' + password;
+            }
+        }
+    </script>
+
+</head>
+
+<body style="background-color: #191919;">
+
+    <div class="box">
+        <div style="font-family: monospace;color: white;font-weight: 500;">Login</div>
+        
+        <input type="text" name="" id="txtuser" placeholder="Username">
+        <input type="password" name=""  id="txtPassword" placeholder="Password">
+
+        <input type="submit" name="" value="Login" onclick="UserLogin()">
+    </div>
+
+    <div class="AppVersion">@Model.AppVersion</div>
+</body>
+</html>
